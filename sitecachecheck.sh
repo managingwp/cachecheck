@@ -7,11 +7,13 @@ usage () {
 
 cache_check () {
 	echo "-- Checking $URL cache headers"
-	curl --head $URL
+	CURL_OUTPUT=$(curl -s --head $URL)
+	echo $CURL_OUTPUT
+	
 }
 
-if [[ -v $1 ]]; then
+if [[ -z $URL ]]; then
 	usage
-elif [[ $1 ]]; then
+elif [[ $URL ]]; then
 	cache_check $URL
 fi
